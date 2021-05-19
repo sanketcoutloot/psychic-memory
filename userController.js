@@ -40,7 +40,21 @@ const getUser = async (req, res) => {
     }
 
     const response = success({ data: user });
-    res.status(201).send(response);
+    res.status(200).send(response);
+  } catch (error) {
+    const response = failed({ error });
+    res.status(400).send(response);
+  }
+};
+
+const findUser = async (req, res) => {
+  try {
+    let { id } = req.params;
+    const user = await Users.findById(id);
+    const userArr = [];
+    userArr.push(user);
+    const response = success({ data: userArr });
+    res.status(200).send(response);
   } catch (error) {
     const response = failed({ error });
     res.status(400).send(response);
@@ -50,4 +64,5 @@ const getUser = async (req, res) => {
 module.exports = {
   addUser,
   getUser,
+  findUser,
 };

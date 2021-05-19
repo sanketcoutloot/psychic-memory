@@ -1,4 +1,5 @@
 const success = ({ data, message = "Successfully" }) => {
+  console.log("data =>", data);
   return {
     data,
     message,
